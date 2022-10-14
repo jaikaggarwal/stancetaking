@@ -66,16 +66,17 @@ class BetaRegression:
         score_groups = self.get_score_groups(self.config.bins)
 
         for k, (train_idx, test_idx) in enumerate(kf.split(X=self.scores, y=score_groups)):
-            train, test = self.embeddings, self.scores
-            X_train = train[train_idx]
-            y_train = train.iloc[train_idx, :]
+            embeddings, scores = self.embeddings, self.scores
+            X_train = embeddings[train_idx]
+            y_train = scores[train_idx]
 
-            X_test = test[test_idx]
-            y_test = test.iloc[test_idx, :]
+            X_test = embeddings[test_idx]
+            y_test = scores[test_idx]
 
+            print(f"Fitting model {k}...")
             binom_glm = sm.GLM(y_train, X_train, family=sm.families.Binomial())
             binom_fit_model = binom_glm.fit()
-            fit_val = self.goodness_of_fit(binom_fit_model, y_test, X_test)
+            fit_val = self.get_goodness_of_fit(binom_fit_model, y_test, X_test)
 
             self.history[k] = fit_val
             self.plot_predictions(binom_fit_model, y_test, X_test, k)
@@ -106,8 +107,8 @@ class BetaRegression:
         pred_vals = y_predicted.summary_frame()["mean"]
 
         # Unscale values before plotting
-        pred_vals = pred_vals * (6) + 3
-        y_true = y_true * 6 + 3
+        pred_vals = (pred_vals * 6) - 3
+        y_true = (y_true * 6) - 3
         
 
         plt.scatter(y_true, pred_vals, alpha=0.8)
@@ -116,6 +117,7 @@ class BetaRegression:
         plt.title(f"{k}-folds Formality model predictions R^2 {self.history[k]}")
 
         plt.savefig(f"figs/{k}_formality_model_predictions.png")
+        plt.clf()
 
 
     # TO DO: Get sentence associated with test set and their predictions
@@ -124,4 +126,13 @@ class BetaRegression:
         y_predicted = model.get_prediction(X)
         pred_vals = y_predicted.summary_frame()["mean"]
 
-        pass
+        sentence_scores = pd.concat([pred_vals, y_true, text], axis=1)
+        sentence_scores.to_csv("logs/sentences.csv", index=False)
+
+
+    def get_average_r2(self):
+        sum = 0
+        for i in self.history:
+            sum += self.history[i]
+        
+        return sum / len(self.history)

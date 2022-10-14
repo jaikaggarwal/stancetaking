@@ -16,5 +16,10 @@ if __name__ == "__main__":
     formality_model = BetaRegression(embeddings, formality_scores, config)
     formality_model.train_model()
 
+    print(formality_model.get_average_r2())
     filename = "models/formality_model.sav"
     pickle.dump(formality_model.best_model, open(filename, 'wb'))
+
+    load_best_model = formality_model.best_model
+    formality_model.get_sentences(load_best_model, formality_scores, embeddings, text)
+
