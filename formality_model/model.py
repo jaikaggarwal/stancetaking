@@ -38,7 +38,8 @@ class BetaRegression:
     
     def get_score_groups(self, number_of_groups) -> None:
         """Split score into specified bins for stratification."""
-        intervals = pd.cut(self.scores, bins=number_of_groups)
+        labels = ["a", "b", "c", "d", "e", "f"]
+        intervals = pd.cut(self.scores, bins=number_of_groups, labels=labels)
 
         return intervals
     
@@ -67,7 +68,7 @@ class BetaRegression:
         for k, (train_idx, test_idx) in enumerate(kf.split(X=self.scores, y=score_groups)):
             train, test = self.embeddings, self.scores
             X_train = train[train_idx]
-            y_train = test.iloc[train_idx, :]
+            y_train = train.iloc[train_idx, :]
 
             X_test = test[test_idx]
             y_test = test.iloc[test_idx, :]
