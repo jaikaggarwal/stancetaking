@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+from scipy.stats import spearmanr
 from sentence_transformers import SentenceTransformer
 import statsmodels.api as sm
 from sklearn.model_selection import KFold, StratifiedKFold
@@ -33,6 +34,7 @@ class BetaRegression:
         self.config = config
         self.best_model = None
         self.best_fit = -1
+        self.best_spearmanr = -3
         self.history = {}
 
     
@@ -86,6 +88,11 @@ class BetaRegression:
                 print(f"R^2 score of: {fit_val}")
                 curr_best_fit = fit_val
                 curr_best_model = binom_fit_model
+
+            spearman = self.get_spearmanr(binom_fit_model, y_test, X_test)
+            if spearman > self.best_spearmanr:
+                self.best_spearmanr = spearman
+                print(f"Best Spearman R is {spearman}")
         
         self.best_fit = curr_best_fit
         self.best_model = curr_best_model
@@ -97,8 +104,16 @@ class BetaRegression:
         """Return R^2 value of model to compare goodness of fit."""
         y_predicted = model.get_prediction(X)
         pred_vals = y_predicted.summary_frame()["mean"]
-        fit_val = r2_score(y_true, pred_vals)
-        return fit_val
+        r2 = r2_score(y_true, pred_vals)
+        return r2
+
+
+    def get_spearmanr(self, model, y_true, X):
+        """Return the spearmanr of model to compare goodness of fit."""
+        y_predicted = model.get_prediction(X)
+        pred_vals = y_predicted.summary_frame()["mean"]
+        spearman = spearmanr(y_true, pred_vals)
+        return spearman.correlation
 
     
     def plot_predictions(self, model, y_true, X, k):
@@ -111,13 +126,15 @@ class BetaRegression:
         y_true = (y_true * 6) - 3
         
 
-        plt.scatter(y_true, pred_vals, alpha=0.8)
-        plt.xlabel("Actual formality score")
-        plt.ylabel("Predicted formality score")
-        plt.title(f"{k}-folds Formality model predictions R^2 {self.history[k]}")
+        fig, ax = plt.subplots()
+        ax.scatter(y_true, pred_vals, alpha=0.8)
+        ax.set_xlabel("Actual formality score")
+        ax.set_ylabel("Predicted formality score")
+        ax.set_title(f"{k}-folds Formality model predictions")
+        ax.text(0.1, 0.9, f"R^2 {self.history[k]:.2f}", ha='center', va='center', transform=ax.transAxes)
 
-        plt.savefig(f"figs/{k}_formality_model_predictions.png")
-        plt.clf()
+        fig.savefig(f"figs/{k}_formality_model_predictions.png")
+        # fig.clf()
 
 
     # TO DO: Get sentence associated with test set and their predictions
