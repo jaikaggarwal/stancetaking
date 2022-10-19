@@ -1,0 +1,1842 @@
+{
+    "actually": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "admittedly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "assuredly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "avowedly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "certainly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "decidedly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "definitely": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "evidently": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "in actuality": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "incontestably": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "incontrovertibly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "indeed": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "indisputably": {
+        "source": "b&f",
+        "stance_group":"certainty_adverb"
+    }, 
+    "indubitably": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "in fact": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "in reality": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "in certainty": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "with certainty": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "irrefutably": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "manifestly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "obviously": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "of course": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "patently": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "unambiguously": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "unarguably": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "undeniably": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "undoubtedly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "unmistakably": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "unquestionably": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "without doubt": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "without question": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "certain": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "clear": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "realistic": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "sure": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "clearly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "plainly": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    }, 
+    "surely": {
+        "source": "b&f",
+        "stance_group": "certainty_adverb"
+    },
+    "allegedly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "apparently": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "arguably": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "conceivably": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "ostensibly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "perchance": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "perhaps": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "possibly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "presumably": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "purportedly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "reportedly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "reputedly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "seemingly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "supposedly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "formally": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "hypothetically": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    },
+    "ideally": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    },
+    "likely": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    },
+    "officially": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "outwardly": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    },
+    "superficially": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "technically": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    }, 
+    "theoretically": {
+        "source": "b&f",
+        "stance_group": "doubt_adverb"
+    },
+    "ascertain": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "calculate": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "conclude": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "deduce": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "demonstrate": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "determine": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "discern": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "establish": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "know": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "note": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "perceive": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "prove": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "realize": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "find": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "show": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "ascertained": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "calculated": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "concluded": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "deduced": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "demonstrated": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "determined": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "discerned": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "established": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "known": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "noted": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "perceived": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "proved": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "realized": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "found": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "shown": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "shows": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "follows": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "demonstrates": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "establishes": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "proves": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    }, 
+    "signifies": {
+        "source": "b&f",
+        "stance_group": "certainty_verb"
+    },
+    "disbelieve": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "expect": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "feel": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "gather": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "imagine": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "sense": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "think": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "assume": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "conjecture": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "doubt": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "estimate": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "guess": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "hypothesize": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "infer": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "postulate": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "presume": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "speculate": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "suppose": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "surmise": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "suspect": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "wonder if": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "assumed": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "conjectured": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "disbelieved": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "doubted": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "estimated": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "expected": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "felt": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "gathered": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "guessed": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "hypothesized": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "imagined": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "inferred": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "postulated": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "presumed": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "sensed": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "speculated": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "supposed": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "surmised": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "suspected": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "thought": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "intimates": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "suggests": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "intimate": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "suggest": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "appear": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "appears": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "assumes": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "implies": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "indicates": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "presumes": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "seem": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    }, 
+    "seems": {
+        "source": "b&f",
+        "stance_group": "doubt_verb"
+    },
+    "X certain": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "evident": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "impossible": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "inconceivable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "incontestable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "incontrovertible": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "indisputable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "indubitable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "irrefutable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "X known": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "manifest": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "obvious": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    },
+    "patent": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "true": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "unambiguous": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "unarguable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "undeniable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "undoubted": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "unmistakable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "unquestionable": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "untrue": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "well-known": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    },
+    "apparent": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "X clear": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "X definite": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "plain": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "X sure": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    },
+    "convinced": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "definite": {
+        "source": "b&f",
+        "stance_group": "certainty_adjective"
+    }, 
+    "alleged": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "arguable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "conceivable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "disputable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "doubtful": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "dubious": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "imaginable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    },
+    "improbable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "X likely": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "possible": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "presumable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "probable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "questionable": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "reputed": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    },
+    "X supposed": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "uncertain": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "unlikely": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    },
+    "indefinite": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "unclear": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    }, 
+    "X unsure": {
+        "source": "b&f",
+        "stance_group": "doubt_adjective"
+    },
+    "ache for": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "enjoy": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "fancy": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "hope": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "like": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "long for": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "love": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    },
+    "prefer": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "relish": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "seek": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "want": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "wish": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "yearn": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    },
+    "amazes": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "amuses": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "astonishes": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "delights": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "interests": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    },
+    "pleases": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "refreshes": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "suits": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "surprises": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    }, 
+    "thrills": {
+        "source": "b&f",
+        "stance_group": "positive_affect_verbs"
+    },
+    "begrudge": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "can't stand": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "deign": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "despise": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "detest": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "dislike": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    },
+    "dread": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "envy": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "fear": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "hate": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "loathe": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "regret": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "resent": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "scorn": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    },
+    "aggravates": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "agitates": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "alarms": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "annoys": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "bothers": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    },
+    "confuses": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "disappoints": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "discourages": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "disgusts": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "dismays": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "distresses": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "disturbs": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    },
+    "embarrasses": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "frightens": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "horrifies": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "irritates": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "kills": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "overwhelms": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "pains": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "perplexes": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "perturbs": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "puzzles": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "rubs": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "saddens": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "scares": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "shocks": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "slays": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "troubles": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    },
+    "upsets": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    }, 
+    "worries": {
+        "source": "b&f",
+        "stance_group": "negative_affect_verbs"
+    },
+    "amazed": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "amused": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "astonished": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "content": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "X curious": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "delighted": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "eager": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "enchanted": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "fascinated": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "X fortunate": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "glad": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "happy": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "hopeful": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "interested": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "jubilant": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "keen": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "X lucky": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "overjoyed": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "pleased": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "proud": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "relieved": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "satisfied": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "surprised": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "thankful": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "amazing": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "amusing": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "appropriate": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "astonishing": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "convenient": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "curious": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "delightful": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "fascinating": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "fitting": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "fortunate": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "funny": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "incredible": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "inevitable": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "interesting": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "ironic": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "lucky": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "merciful": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "natural": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "nice": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "pleasing": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "predictable": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "preferable": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "proper": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "refreshing": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "remarkable": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "significant": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "surprising": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "understandable": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    }, 
+    "unexpected": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adjective"
+    },
+    "afraid": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "aggrieved": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "alarmed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "annoyed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    },
+    "ashamed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "concerned": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "depressed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "disappointed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "disgusted": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "dismayed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    },
+    "dissatisfied": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "distressed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "disturbed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "embarrassed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "frightened": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "furious": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "impatient": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "indignant": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "irritated": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "mad": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "X odd": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "overwhelmed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "perplexed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "perturbed": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "puzzled": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "regretful": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "X sad": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "scared": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "shocked": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "suspicious": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "unhappy": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    },
+    "upset": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "worried": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    },
+    "alarming": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "annoying": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "confusing": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "disappointing": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "disgusting": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "distressing": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "disturbing": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "embarrassing": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "frightening": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    },
+    "hopeless": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "horrible": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "improper": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "irritating": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "odd": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "perplexing": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "puzzling": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "regrettable": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "sad": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "scary": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "silly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "strange": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "X suspicious": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "terrible": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "tragic": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "unfortunate": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    },
+    "unnatural": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "upsetting": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    }, 
+    "worrisome": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adjective"
+    },
+    "amazingly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "amusingly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "appropriately": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "astonishingly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "conveniently": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "curiously": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "enchantingly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "fortunately": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "funnily": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "happily": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "hopefully": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "incredibly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    },
+    "inevitably": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "interestingly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "ironically": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "luckily": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "mercifully": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "naturally": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    },
+    "predictably": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "preferably": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "refreshingly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "remarkably": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "rightly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "significantly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    },
+    "suprisingly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "thankfully": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "unaccountably": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "understandably": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    }, 
+    "unexpectedly": {
+        "source": "b&f",
+        "stance_group": "positive_affect_adverb"
+    },
+    "alarmingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "annoyingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "ashamedly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "depressingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "disappointingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "disgustingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "disturbingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    },
+    "embarrassedly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "frighteningly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "impatiently": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "oddly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "perplexingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "regretfully": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "regrettably": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "sadly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "shockingly": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "strangely": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "suspiciously": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "tragically": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "unfortunately": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "unhappily": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "unluckily": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    }, 
+    "unnaturally": {
+        "source": "b&f",
+        "stance_group": "negative_affect_adverb"
+    },
+    "almost": {
+        "source": "b&f",
+        "stance_group": "hedge"
+    },
+    "at about": {
+        "source": "b&f",
+        "stance_group": "hedge"
+    }, 
+    "kind of": {
+        "source": "b&f",
+        "stance_group": "hedge"
+    }, 
+    "maybe": {
+        "source": "b&f",
+        "stance_group": "hedge"
+    }, 
+    "more or less": {
+        "source": "b&f",
+        "stance_group": "hedge"
+    }, 
+    "something like": {
+        "source": "b&f",
+        "stance_group": "hedge"
+    }, 
+    "sort of": {
+        "source": "b&f",
+        "stance_group": "hedge"
+    },
+    "a lot": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "DO + Verb": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "for sure": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "just": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "real + ADJ": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "really": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "more": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "most": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    }, 
+    "so H- ADJ": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    },
+    "so + ADV": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    },
+    "such a": {
+        "source": "b&f",
+        "stance_group": "emphatic"
+    },
+    "can": {
+        "source": "b&f",
+        "stance_group": "possibility_modal"
+    }, 
+    "may": {
+        "source": "b&f",
+        "stance_group": "possibility_modal"
+    }, 
+    "might": {
+        "source": "b&f",
+        "stance_group": "possibility_modal"
+    }, 
+    "could": {
+        "source": "b&f",
+        "stance_group": "possibility_modal"
+    },
+    "ought": {
+        "source": "b&f",
+        "stance_group": "necessity_modal"
+    }, 
+    "should": {
+        "source": "b&f",
+        "stance_group": "necessity_modal"
+    }, 
+    "must": {
+        "source": "b&f",
+        "stance_group": "necessity_modal"
+    },
+    "will": {
+        "source": "b&f",
+        "stance_group": "predictive_modal"
+    }, 
+    "would": {
+        "source": "b&f",
+        "stance_group": "predictive_modal"
+    },
+    "shall": {
+        "source": "b&f",
+        "stance_group": "predictive_modal"
+    }
+}
