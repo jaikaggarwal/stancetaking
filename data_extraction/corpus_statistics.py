@@ -11,10 +11,9 @@ files = list(os.walk(ROOT_DIR))
 total = None
 for dir_tup in files:
     dir = dir_tup[0]
-    print(dir)
     if not dir.endswith("files"):
         continue
-    if not any([num in dir for num in ["02", "05", "08", "11"]]):
+    if not (dir[-8:-6] in ["02", "05", "08", "11"]):
         continue
     sub_files = sorted(dir_tup[2])
     print(dir)
