@@ -28,16 +28,19 @@ def rescale_formality(col):
     rescaled = (col - col.min()) / (col.max() - col.min())
     return rescaled
 
-def formality_dataset_generator():
+def formality_dataset_generator(datasets=None):
     # Read each type of data
-    datasets = ["answers", "blog", "email", "news"]
+    if datasets is None:
+        datasets = ["answers", "blog", "email", "news"]
+    
     for dataset in datasets:
         yield load_formality_data(f"data/data-for-release/{dataset}")
 
-def load_formality_dataset_to_df():
+def load_formality_dataset_to_df(datasets=None):
     # Stitch data into DataFrame
-    df = pd.concat(list(formality_dataset_generator()), ignore_index=True)
+    df = pd.concat(list(formality_dataset_generator(datasets)), ignore_index=True)
     return df
 
 if __name__ == "__main__":
-    df = load_formality_dataset_to_df()
+    datasets = ["answers", "blog"]
+    df = load_formality_dataset_to_df(datasets)
