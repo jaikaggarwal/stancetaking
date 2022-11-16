@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.stats import truncnorm
+from scipy.spatial.distance import pdist
 from sklearn.manifold import MDS
 from clustering import generate_synthetic_data
 
@@ -13,6 +14,18 @@ def generate_synthetic_data(samples, features):
     data = [truncnorm.rvs(0, 1, loc=0.5, scale=0.5) for _ in range(samples * features)]
     data = np.array(data).reshape(samples, features)
     return data
+
+
+def get_distance_matrix(data, metric=None):
+    """Return a distance matrix that can be used to calculate distance
+    between clusters, using a supplied metric.
+
+    By default calculate cosine distance.
+    """
+    if metric is None:
+        return pdist(data, metric="cosine")
+    else:
+        return pdist(data, metric=metric)
 
 
 def visualize_mds(data, labels, title, filename):
