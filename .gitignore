@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# CSV files
+*.csv
+
+# Wang2Vec
+wang2vec/
