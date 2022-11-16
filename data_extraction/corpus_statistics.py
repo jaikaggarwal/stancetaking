@@ -34,21 +34,22 @@ def filter_df(df):
     tmp = tmp.rename(columns={"sens": "body"})
     return tmp[tmp['len'] >= 6]
 
-def extract_test_data(dir):
-    print(dir)
-    rel_communities = pd.read_csv("test_communities.csv", index_col=0).index.tolist()
-    print(rel_communities)
-    sub_files = os.listdir(dir)
+def extract_test_data(test_communities_file, data_dir, output_dir):
+    print(data_dir)
+    rel_communities = pd.read_csv(test_communities_file, index_col=0).index.tolist()
+    sub_files = os.listdir(data_dir)
     curr_total = []
     for sub_file in sub_files:
-        df = pd.read_json(dir + "/" + sub_file, lines=True)
+        df = pd.read_json(data_dir + "/" + sub_file, lines=True)
         tmp = df[df['BF'] == 1][['author', 'body', 'subreddit', 'id', "created_utc", "BF_markers"]]
         tmp['subreddit'] = tmp['subreddit'].str.lower()
         curr_total.append(tmp[tmp['subreddit'].isin(rel_communities)])
-    idx = dir.rfind("/")
+    idx = data_dir.rfind("/")
     agg = pd.concat(curr_total)
     agg = filter_df(agg)
-    agg.to_csv(ROOT_DIR + f"test_run_data/{dir[idx + 1: ]}.csv")
+    # Mask sentences
+    agg['body_mask'] = agg.apply(lambda x: re.sub(eval(x['rel_marker'])[0], "[MASK]", x['body'].lower()), axis=1)
+    agg.to_csv(ROOT_DIR + f"{output_dir}/{data_dir[idx + 1: ]}.csv")
 
 
 def mask_sentences():
@@ -61,11 +62,10 @@ def mask_sentences():
 
 
 if __name__ == '__main__':
-    mask_sentences()
-    # dirs = [dir_tup[0] for dir_tup in files if dir_tup[0].endswith("files")]
-    # dirs = sorted(dirs)
-    # with Pool(6) as p:
-    #     r = list(tqdm.tqdm(p.imap(extract_test_data, dirs), total=len(dirs)))
+    dirs = [dir_tup[0] for dir_tup in files if dir_tup[0].endswith("files")]
+    dirs = sorted(dirs)
+    with Pool(6) as p:
+        r = list(tqdm.tqdm(p.imap(extract_test_data, dirs), total=len(dirs)))
 
 
 

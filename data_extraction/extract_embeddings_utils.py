@@ -78,6 +78,17 @@ def process_datadumps(dump_file, sbert, post_level_embeds_output_dir, metadata_o
     # metadata = pd.concat([metadata, post_lengths], axis=1)
     metadata.to_csv(metadata_output_dir, index=False)
 
+def embeddings_wrapper(input_dir, output_dir, sbert_model):
+    files = os.listdir(input_dir)
+    for file in tqdm(files):
+        print(file)
+        process_datadumps(
+            input_dir + file, 
+            sbert_model, 
+            output_dir + file[:-4] + "_embeddings.csv", 
+            output_dir + file[:-4] + "_metadata.csv"
+        )
+
 if __name__ == "__main__":
     sbert_model = SBERT("bert-large-nli-mean-tokens")
     files = os.listdir(INPUT_DIR)

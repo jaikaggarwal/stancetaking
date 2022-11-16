@@ -167,7 +167,33 @@ class LexicalAnalysis():
         LexicalAnalysis.goodness_of_fit(dominance_model, dominance, vad_embeddings)
 
         return valence_model, arousal_model, dominance_model
-    
+
+def stance_feature_extraction(input_pair, input_dir, output_dir, v_model, a_model, d_model, p_model, f_model):
+    e, m = input_pair
+    e_file = pd.read_csv(input_dir + e, index_col='id')
+    m_file = pd.read_csv(input_dir + m, index_col='id')
+    embeddings = e_file.to_numpy()
+    vad_vals = LexicalAnalysis.infer_emotion_value(embeddings, valence_model, arousal_model, dominance_model)
+    vad_vals = pd.DataFrame(np.asarray(vad_vals).T, index=m_file.index, columns=['Valence', 'Arousal', 'Dominance'])
+    m_file = pd.concat((m_file, vad_vals), axis=1)
+    m_file['Politeness'] = LexicalAnalysis.infer_politeness(embeddings, politeness_model)
+    m_file['Formality'] = LexicalAnalysis.infer_formality(embeddings, formality_model)
+    m_file.to_csv(output_dir + m[:-4] + "_full_features.csv")
+
+
+def extraction_wrapper(input_dir, output_dir, num_cores):
+    data = os.listdir(input_dir)
+    embedding_files = sorted([file for file in data if "embeddings.csv" in file])
+    metadata_files = sorted([file for file in data if "metadata.csv" in file])
+
+    valence_model, arousal_model, dominance_model = LexicalAnalysis.init_vad()
+    politeness_model = LexicalAnalysis.init_politeness()
+    formality_model = LexicalAnalysis.init_formality()
+
+    with Pool(num_cores) as p:
+        r = list(tqdm(p.imap(lambda x: stance_feature_extraction(x, input_dir, output_dir, valence_model, arousal_model, dominance_model, politeness_model, formality_model), 
+        zip(embedding_files, metadata_files)), 
+        total=len(embedding_files)))
 
 if __name__ == "__main__":
 
