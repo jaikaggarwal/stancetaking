@@ -6,6 +6,8 @@ import numpy as np
 from gensim.models import KeyedVectors
 from gensim import models
 
+from tqdm import tqdm
+
 def load_wang2vec_model(model_path):
     return models.KeyedVectors.load_word2vec_format(model_path, binary=True)
 
@@ -24,7 +26,7 @@ def find_similar_stancemarkers(w2v_model, stancemarkers, cutoff=0.75):
     """
     expanded_lexicon = defaultdict(set)
     keys = np.asarray(w2v_model.index_to_key)
-    for stancemarker in stancemarkers:
+    for stancemarker in tqdm(stancemarkers):
         if stancemarker in keys:
             # Find all the word embeddings from wang2vec with cosine similarity
             # greater than cutoff with this stancemarker
@@ -63,8 +65,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    print("Loading model...")
     w2v_model = load_wang2vec_model(args.embed_path)
+    print("Loading stance markers...")
     stance_markers = load_stancemarkers(args.stance_path)
 
+    print("Finding similar stancemarkers...")
     similar_markers = find_similar_stancemarkers(w2v_model, stance_markers, cutoff=args.cutoff)
+    print("Saving markers...")
     expanded_stancemarkers_to_json(similar_markers, args.out_path)
