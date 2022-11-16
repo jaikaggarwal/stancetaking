@@ -1,3 +1,4 @@
+import argparse
 import pandas as pd
 import numpy as np
 import os
@@ -6,7 +7,7 @@ from tqdm import tqdm
 import re
 from nltk import word_tokenize, sent_tokenize
 from utils import Serialization
-from feature_extract import LexicalAnalysis
+from feature_extraction import LexicalAnalysis
 from extract_embeddings_utils import SBERT
 
 tqdm.pandas()
@@ -23,13 +24,38 @@ def extract_relevant_markers(new_line, terms):
     present_markers = [val for val in terms if val in curr_body]
     return present_markers
 
+
+def get_space_tokenize_length(text: str):
+    return len(text.split())
+
+def get_word_tokenize_length(text: str):
+    return len(nltk.word_tokenize(text))
+
+def get_tokenization_length_method(tokenization_method: str):
+    """Return a tokenization function based on the name.
+    
+    Accepted methods are:
+        - "spaces" which tokenizes a sentence by spaces.
+        - "word" which uses nltk.word_tokenize.
+        - "SBERT" which uses the embedded SBERT tokenizer.
+    """
+    if tokenization_method == "spaces":
+        tokenizer_function = get_space_tokenize_length
+    elif tokenization_method == "word":
+        tokenizer_function = get_word_tokenize_length
+    elif tokenization_method == "SBERT":
+        sbert_model = SBERT()
+        tokenizer_function == sbert_model.get_tokenize_lengths
+    else:
+        raise ValueError("No such tokenization method.")
+
+    return tokenizer_function
+
 # Gather sample data
-def load_sample_data(str: tokenization_method):
+def load_sample_data(tokenization_method: str):
     """
     Loads the first 500K comments from the 2014 Reddit data dumps (specifically, the first 500K
     comments of length greater than 4 according to word_tokenize).
-
-    #TODO: Implement tokenization_method (either split by spaces, word tokenize, or the SBERT tokenizer) later in function (have the input be a string)
     """
     # Create the relevant output folder
     if not os.path.exists("length_analysis/"):
@@ -43,10 +69,13 @@ def load_sample_data(str: tokenization_method):
     rel_markers = set(sub_group.index)
     marker_to_group = sub_group['stance_group'].to_dict()
 
+    print("are we here?")
     # We can limit our analysis to the first 500K comments of 2014
     ROOT_DIR = "/ais/hal9000/datasets/reddit/stance_analysis/"
     files = sorted(list(os.walk(ROOT_DIR)))
     df = pd.read_json(files[1][0] + "/aa", lines=True)
+
+    print("did we get here?")
 
     # For now, we can further limit our analysis to those with Biber and Finnegan markers
     df = df[df['BF'] == 1]
@@ -63,8 +92,10 @@ def load_sample_data(str: tokenization_method):
     tmp['marker_category'] = tmp['rel_marker'].apply(lambda x: marker_to_group[x[0]])
     
     # Here is where we calculate the length of sentences
+
     # TODO: Change lambda function to include tokenization_method
-    tmp['len'] = tmp['sens'].progress_apply(lambda x: pass)
+    tokenizer_function = get_tokenization_method(tokenization_method)
+    tmp['len'] = tmp['sens'].progress_apply(lambda x: tokenizer_function(x))
     tmp = tmp.rename(columns={"sens": "body"})
 
     for i in LENGTHS:
@@ -124,8 +155,8 @@ def plot_feature_distribution(feature, len_to_feature, length, base_length):
     plt.xlabel(f"{feature.capitalize()} Scores")
     plt.ylabel("Probability Density")
     plt.legend()
-    #TODO: Choose directory and filename to save figures in
-    plt.savefig(pass)
+    
+    plt.savefig(f"feature_figures/{tokenization_method}_length_analysis_figs.png")
     plt.clf()
 
 
