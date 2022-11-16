@@ -51,7 +51,8 @@ def main(dir_name, num_cores):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run stancetaking pipeline")
-    parser.add_argument("--num_cores", type=int, help="Number of cores to use.", default=6)
     parser.add_argument("output_dir", type=str, help="Where to store data")
+    parser.add_argument("--num_cores", type=int, help="Number of cores to use.", default=6)
     
     args = parser.parse_args()
+    main(args.output_dir, args.num_cores)

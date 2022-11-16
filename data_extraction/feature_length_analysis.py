@@ -6,11 +6,15 @@ from tqdm import tqdm
 import re
 from nltk import word_tokenize, sent_tokenize
 from utils import Serialization
-from vad_analyis_tmp import infer_emotion_value
+from feature_extract import LexicalAnalysis
+from extract_embeddings_utils import SBERT
+
 tqdm.pandas()
 
 FEATURES = ["valence", "arousal", "dominance", "formality", "politeness"]
 LENGTHS = [4, 6, 8, 10, 12, 14, 16] #TODO: You can adjust these to ones that seem sensible (mb 4, 6, 8, 10, 16)
+
+
 
 def extract_relevant_markers(new_line, terms):
     """Collect all of the relevant markers that are present
@@ -20,12 +24,12 @@ def extract_relevant_markers(new_line, terms):
     return present_markers
 
 # Gather sample data
-def load_sample_data(tokenization_method):
+def load_sample_data(str: tokenization_method):
     """
     Loads the first 500K comments from the 2014 Reddit data dumps (specifically, the first 500K
     comments of length greater than 4 according to word_tokenize).
 
-    #TODO: Implement tokenization_method (either split by spaces, word tokenize, or the SBERT tokenizer) later in function
+    #TODO: Implement tokenization_method (either split by spaces, word tokenize, or the SBERT tokenizer) later in function (have the input be a string)
     """
     # Create the relevant output folder
     if not os.path.exists("length_analysis/"):
@@ -66,56 +70,40 @@ def load_sample_data(tokenization_method):
     for i in LENGTHS:
         curr = tmp[tmp['len'] == i]
         curr['body_mask'] = curr.apply(lambda x: re.sub(x['rel_marker'][0], "[MASK]", x['body'].lower()), axis=1)
-        curr.to_csv(f"length_analysis/{i}_len_posts.csv")
+        curr.to_csv(f"length_analysis/{i}_len_posts_{tokenization_method}.csv")
 
-def compute_feature_values(df):
+
+def compute_feature_values(tokenization_method):
     valence_model = Serialization.load_obj('valence_model')
     arousal_model = Serialization.load_obj('arousal_model')
     dominance_model = Serialization.load_obj('dominance_model')
     politeness_model = Serialization.load_obj("wikipedia_politeness_classifier")
-    formality_model = #TODO after retraining Serialization.load_obj("")
+    formality_model = pickle.load(open("/ais/hal9000/datasets/reddit/stance_pipeline/classifiers/formality_model.sav", "rb"))
+    sbert_model = SBERT()
+    
+    for i in LENGTHS:
+        df = pd.read_csv(f"length_analysis/{i}_len_posts_{tokenization_method}.csv", index_col=0)
+        masked_posts = df['body_mask'].tolist()
+        embeddings = sbert_model.get_embeddings(masked_posts)
+    
+        vad_vals = LexicalAnalysis.infer_emotion_value(embeddings, valence_model, arousal_model, dominance_model)
+        vad_vals = pd.DataFrame(np.asarray(vad_vals).T, index=m_file.index, columns=['valence', 'arousal', 'dominance'])
+        df = pd.concat((df, vad_vals), axis=1)
+        df['politeness'] = LexicalAnalysis.infer_politeness(embeddings, politeness_model)
+        df['formality'] = LexicalAnalysis.infer_formality(embeddings, formality_model)
+        df.to_csv(f"length_analysis/{i}_len_posts_{tokenization_method}_vadpf.csv", index_col=0)
 
-    #TODO: Jai will compute this part
-
-    curr["output_masked"] = df['body_mask'].progress_apply(lambda x: infer_emotion_value(x, valence_model, arousal_model, dominance_model))
     
 
-def extract_vad_from_df(curr_df, col, masked):
-    """
-    This is a helper function to get the VAD values from tuples into three separate columns.
-    """
-    valence = []
-    arousal = []
-    dominance = []
-    try:
-        for i, row in curr_df.iterrows():
-            v, a, d = eval(row[col + masked])
-            valence.append(v)
-            arousal.append(a)
-            dominance.append(d)
-    except Exception as e:
-        print(e)
-        print(row[col])
-        print(e)
-    curr_df['valence' + masked] = valence
-    curr_df['arousal' + masked] = arousal
-    curr_df['dominance' + masked] = dominance
 
-    return curr_df
-
-
-
-
-def process_feature_data():
+def process_feature_data(tokenization_method):
     """
     Wrapper function for creating the plots. 
-    """
-    
+    """    
     feature_len_value_map = {feature: {} for feature in FEATURES}
     # First, we can load all the data into feature_len_value_map
     for i in LENGTHS:
-        curr = pd.read_csv(f"length_analysis/{i}_len_posts_vad.csv", index_col=0)
-        curr =  extract_vad_from_df(curr, "output", "_masked")
+        curr = pd.read_csv(f"length_analysis/{i}_len_posts_{tokenization_method}_vadpf.csv", index_col=0)
         for feature in FEATURES:
             feature_len_value_map[feature][i] = curr[f'{feature}_masked']
 
@@ -139,3 +127,22 @@ def plot_feature_distribution(feature, len_to_feature, length, base_length):
     #TODO: Choose directory and filename to save figures in
     plt.savefig(pass)
     plt.clf()
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run length analysis")
+    parser.add_argument("tokenization_method", type=str, help="Tokenization method")
+    parser.add_argument("--gpu_id", type=int, help="Number of cores to use.", default=3)
+    
+    
+    args = parser.parse_args()
+
+    # Set the gpu number appropriately
+    from sentence_transformers.SentenceTransformer import torch as pt
+    pt.cuda.set_device(args.gpu_id)
+    print(pt.cuda.is_available())
+
+
+    load_sample_data(args.tokenization_method)
+    compute_feature_values(tokenization_method)
+    process_feature_data()
