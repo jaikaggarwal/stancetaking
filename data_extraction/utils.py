@@ -13,7 +13,7 @@ import time
 from tqdm import tqdm
 # tqdm.pandas()
 
-DATA_OUT_DIR = '/ais/hal9000/jai/hate_speech/pickle/'
+DATA_OUT_DIR = '/ais/hal9000/datasets/reddit/stance_pipeline/classifiers/'
 HTTP_PATTERN = re.compile(r'[\(\[]?https?:\/\/.*?(\s|\Z)[\r\n]*')
 
 class Serialization:
