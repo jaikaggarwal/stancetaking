@@ -13,12 +13,37 @@ OUTPUT_DIR = "/ais/hal9000/datasets/reddit/jai_stance_embeddings/"
 
 class SBERT:
     """Wrapper class for SBERT, used to encode text."""
-    def __init__(self, model_name) -> None:
+    def __init__(self, model_name="bert-large-nli-mean-tokens") -> None:
         self.model = SentenceTransformer(model_name)
 
     def get_embeddings(self, data):
         embeddings = self.model.encode(data, show_progress_bar=True)
         return embeddings
+
+    def get_tokenize_lengths(self, data, remove_special_tokens=True):
+        """Get number of token segments in the SBERT tokenization of sentences.
+        
+        Optionally include or exclude the special <CLS> and <SEP> tokens that are
+        added automatically.
+        """
+        # If this is just a raw string, nest it in a list
+        if type(data) == str:
+            data = [data]
+        tokenizations = self.model.tokenize(data)
+
+        # Since padding tokens are tokenized with id 0, we just count
+        # non zero elements.
+
+        # If we have more than 1 post, vectorize counting over each post.
+        if tokenizations.dim() > 1:
+            counts = tokenizations["input_ids"].count_nonzero(axis=1)
+        else:
+            counts = tokenizations["input_ids"].count_nonzero()
+
+        if remove_special_tokens:
+            # Remove the 2 special tokens
+            counts = counts - 2
+        return tokenizations
 
 
 def process_datadumps(dump_file, sbert, post_level_embeds_output_dir, metadata_output_dir):
