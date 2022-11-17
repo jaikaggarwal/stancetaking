@@ -114,11 +114,11 @@ def compute_feature_values(tokenization_method):
         embeddings = sbert_model.get_embeddings(masked_posts)
     
         vad_vals = LexicalAnalysis.infer_emotion_value(embeddings, valence_model, arousal_model, dominance_model)
-        vad_vals = pd.DataFrame(np.asarray(vad_vals).T, index=m_file.index, columns=['valence', 'arousal', 'dominance'])
+        vad_vals = pd.DataFrame(np.asarray(vad_vals).T, index=df.index, columns=['valence', 'arousal', 'dominance'])
         df = pd.concat((df, vad_vals), axis=1)
         df['politeness'] = LexicalAnalysis.infer_politeness(embeddings, politeness_model)
         df['formality'] = LexicalAnalysis.infer_formality(embeddings, formality_model)
-        df.to_csv(f"length_analysis/{i}_len_posts_{tokenization_method}_vadpf.csv", index_col=0)
+        df.to_csv(f"length_analysis/{i}_len_posts_{tokenization_method}_vadpf.csv", index=False)
 
     
 
@@ -132,18 +132,20 @@ def process_feature_data(tokenization_method):
     for i in LENGTHS:
         curr = pd.read_csv(f"length_analysis/{i}_len_posts_{tokenization_method}_vadpf.csv", index_col=0)
         for feature in FEATURES:
-            feature_len_value_map[feature][i] = curr[f'{feature}_masked']
+            # TO DO: Why is this masked?
+            # feature_len_value_map[feature][i] = curr[f'{feature}_masked']
+            feature_len_value_map[feature][i] = curr[f'{feature}']
 
     # Now, we can iterate through each feature, and for each length value, plot the distribution
     # The variable base_length is used to plot each of the distributions against one we think is stable (length of 16)
     base_length = max(LENGTHS)
     for feature in FEATURES:
         for i in LENGTHS:
-            plot_feature_distribution(feature, feature_len_value_map[feature], i, base_length)
+            plot_feature_distribution(feature, feature_len_value_map[feature], i, base_length, tokenization_method)
     
 
 
-def plot_feature_distribution(feature, len_to_feature, length, base_length):
+def plot_feature_distribution(feature, len_to_feature, length, base_length, tokenization_method):
     for key in [base_length, length]:
         print(f"Post Length: {key} Mean Valence: {len_to_feature[key].mean()} +- {len_to_feature[key].std()}")
         plt.hist(len_to_feature[key], density=True, alpha=1 if key == base_length else 0.4, label=f"{key}")
@@ -152,7 +154,7 @@ def plot_feature_distribution(feature, len_to_feature, length, base_length):
     plt.ylabel("Probability Density")
     plt.legend()
     
-    plt.savefig(f"feature_figures/{tokenization_method}_length_analysis_figs.png")
+    plt.savefig(f"feature_figures/{tokenization_method}_feature_{feature}_length_{length}_length_analysis_figs.png")
     plt.clf()
 
 
