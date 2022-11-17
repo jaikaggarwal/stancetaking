@@ -92,6 +92,7 @@ def load_sample_data(tokenization_method: str):
     # Here is where we calculate the length of sentences according to the tokenization method
     tokenizer_function = get_tokenization_length_method(tokenization_method)
     tmp['len'] = tmp['sens'].progress_apply(lambda x: tokenizer_function(x))
+    print("Average sentence length: ", tmp['len'].mean())
     tmp = tmp.rename(columns={"sens": "body"})
 
     for i in LENGTHS:
