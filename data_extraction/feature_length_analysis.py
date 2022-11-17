@@ -2,6 +2,7 @@ import argparse
 import pandas as pd
 import numpy as np
 import os
+import pickle
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import re
@@ -29,7 +30,7 @@ def get_space_tokenize_length(text: str):
     return len(text.split())
 
 def get_word_tokenize_length(text: str):
-    return len(nltk.word_tokenize(text))
+    return len(word_tokenize(text))
 
 def get_tokenization_length_method(tokenization_method: str):
     """Return a tokenization function based on the name.
@@ -45,7 +46,7 @@ def get_tokenization_length_method(tokenization_method: str):
         tokenizer_function = get_word_tokenize_length
     elif tokenization_method == "SBERT":
         sbert_model = SBERT()
-        tokenizer_function == sbert_model.get_tokenize_lengths
+        tokenizer_function = sbert_model.get_tokenize_lengths
     else:
         raise ValueError("No such tokenization method.")
 
@@ -69,13 +70,10 @@ def load_sample_data(tokenization_method: str):
     rel_markers = set(sub_group.index)
     marker_to_group = sub_group['stance_group'].to_dict()
 
-    print("are we here?")
     # We can limit our analysis to the first 500K comments of 2014
     ROOT_DIR = "/ais/hal9000/datasets/reddit/stance_analysis/"
     files = sorted(list(os.walk(ROOT_DIR)))
     df = pd.read_json(files[1][0] + "/aa", lines=True)
-
-    print("did we get here?")
 
     # For now, we can further limit our analysis to those with Biber and Finnegan markers
     df = df[df['BF'] == 1]
@@ -91,10 +89,8 @@ def load_sample_data(tokenization_method: str):
     tmp = tmp[tmp['one_marker']]
     tmp['marker_category'] = tmp['rel_marker'].apply(lambda x: marker_to_group[x[0]])
     
-    # Here is where we calculate the length of sentences
-
-    # TODO: Change lambda function to include tokenization_method
-    tokenizer_function = get_tokenization_method(tokenization_method)
+    # Here is where we calculate the length of sentences according to the tokenization method
+    tokenizer_function = get_tokenization_length_method(tokenization_method)
     tmp['len'] = tmp['sens'].progress_apply(lambda x: tokenizer_function(x))
     tmp = tmp.rename(columns={"sens": "body"})
 
@@ -175,5 +171,5 @@ if __name__ == "__main__":
 
 
     load_sample_data(args.tokenization_method)
-    compute_feature_values(tokenization_method)
-    process_feature_data()
+    compute_feature_values(args.tokenization_method)
+    process_feature_data(args.tokenization_method)

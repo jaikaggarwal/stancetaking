@@ -29,21 +29,21 @@ class SBERT:
         # If this is just a raw string, nest it in a list
         if type(data) == str:
             data = [data]
-        tokenizations = self.model.tokenize(data)
+        tokenizations = self.model.tokenize(data)["input_ids"]
 
         # Since padding tokens are tokenized with id 0, we just count
         # non zero elements.
 
         # If we have more than 1 post, vectorize counting over each post.
         if tokenizations.dim() > 1:
-            counts = tokenizations["input_ids"].count_nonzero(axis=1)
+            counts = tokenizations.count_nonzero(axis=1)
         else:
-            counts = tokenizations["input_ids"].count_nonzero()
+            counts = tokenizations.count_nonzero()
 
         if remove_special_tokens:
             # Remove the 2 special tokens
             counts = counts - 2
-        return tokenizations
+        return counts
 
 
 def process_datadumps(dump_file, sbert, post_level_embeds_output_dir, metadata_output_dir):
