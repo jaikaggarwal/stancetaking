@@ -4,6 +4,7 @@ import pandas as pd
 import os
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
+import numpy as np
 
 from sentence_transformers.SentenceTransformer import torch as pt
 pt.cuda.set_device(1)
@@ -17,6 +18,7 @@ class SBERT:
         self.model = SentenceTransformer(model_name)
 
     def get_embeddings(self, data):
+        pt.cuda.empty_cache()
         embeddings = self.model.encode(data, show_progress_bar=True)
         return embeddings
 
@@ -59,14 +61,20 @@ def process_datadumps(dump_file, sbert, post_level_embeds_output_dir, metadata_o
     data['id'] = data['id'] + "-" +  data['sen_id'].astype(str)
 
     # Create post-level embeddings
-    print(data.columns)
-    all_text_embeddings = sbert.get_embeddings(data.body_mask)
+    NUM_SPLITS = 10
+    data_splits = np.array_split(data, NUM_SPLITS)
+    all_text_dfs = []
+    for i, split in enumerate(data_splits):
+        split = split.reset_index(drop=True)
+        all_text_embeddings = sbert.get_embeddings(split.body_mask.tolist())
+        all_text_df = pd.DataFrame(all_text_embeddings)
+        all_text_df = pd.concat([split.id, all_text_df], axis=1)
+        # all_text_dfs.append(all_text_df)
+        all_text_df.to_csv(post_level_embeds_output_dir + f"_{i}.csv", index=False)
 
-    # Create dataframe for post-level embeddings
-    all_text_df = pd.DataFrame(all_text_embeddings)
-    all_text_df = pd.concat([data.id, all_text_df], axis=1)
-
-    all_text_df.to_csv(post_level_embeds_output_dir, index=False)
+    # # Create dataframe for post-level embeddings
+    # all_text_df = pd.concat(all_text_dfs).reset_index(drop=True)
+    # all_text_df.to_csv(post_level_embeds_output_dir, index=False)
 
     # post_lengths = np.array([])
     # post_ids = np.array([])
@@ -104,13 +112,13 @@ def process_datadumps(dump_file, sbert, post_level_embeds_output_dir, metadata_o
     metadata.to_csv(metadata_output_dir, index=False)
 
 def embeddings_wrapper(input_dir, output_dir, sbert_model):
-    files = os.listdir(input_dir)
+    files = sorted(os.listdir(input_dir))
     for file in tqdm(files):
         print(file)
         process_datadumps(
             input_dir + file, 
             sbert_model, 
-            output_dir + file[:-4] + "_embeddings.csv", 
+            output_dir + file[:-4] + "_embeddings", 
             output_dir + file[:-4] + "_metadata.csv"
         )
 

@@ -1,3 +1,5 @@
+import sys
+sys.path.append("data_extraction/")
 from data_extraction import corpus_statistics as cs
 from data_extraction import extract_embeddings_utils as eeu
 from data_extraction import feature_extraction as fe
@@ -5,7 +7,10 @@ import os
 import argparse
 from tqdm import tqdm
 from multiprocessing import Pool
+from itertools import product
 
+from sentence_transformers.SentenceTransformer import torch as pt
+pt.cuda.set_device(0)
 
 def main(dir_name, num_cores):
     # Step 0: Load files and prepare directories
@@ -27,18 +32,18 @@ def main(dir_name, num_cores):
         else:
             print(f"Using existing directory: {dir_str}")
     
-    # Step 1: Gather all data from test communities #TODO: Write as wrapper
-    print("Extracting community data...")
-    with Pool(num_cores) as p:
-        r = list(tqdm.tqdm(p.imap(lambda x: cs.extract_test_data(TEST_COMMUNITIES_FILE, x, PIPELINE_DATA_DIR), data_dirs), total=len(data_dirs)))
+    # # Step 1: Gather all data from test communities #TODO: Write as wrapper
+    # print("Extracting community data...")
+    # with Pool(num_cores) as p:
+    #     r = list(tqdm(p.starmap(cs.extract_test_data, [(TEST_COMMUNITIES_FILE, data_dir, PIPELINE_DATA_DIR) for data_dir in data_dirs]), total=len(data_dirs)))
     
-    # Step 2: Create SBERT model
-    print("Loading SBERT model...")
-    sbert_model = eeu.SBERT("bert-large-nli-mean-tokens")
+    # # Step 2: Create SBERT model
+    # print("Loading SBERT model...")
+    # sbert_model = eeu.SBERT("bert-large-nli-mean-tokens")
     
-    # Step 3: Create embeddings and metadata file (cannot parallelize, based on GPUs)
-    print("Create embeddings...")
-    eeu.embeddings_wrapper(PIPELINE_DATA_DIR, EMBEDDINGS_DIR, sbert_model)
+    # # Step 3: Create embeddings and metadata file (cannot parallelize, based on GPUs)
+    # print("Create embeddings...")
+    # eeu.embeddings_wrapper(PIPELINE_DATA_DIR, EMBEDDINGS_DIR, sbert_model)
     
     # Step 4: Infer emotional values to create semantic situations
     print("Extracting features...")

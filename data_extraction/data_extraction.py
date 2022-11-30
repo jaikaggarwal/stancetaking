@@ -17,27 +17,16 @@ tqdm.pandas()
 DIR= '/ais/hal9000/datasets/reddit/data_dumps/'
 OUT_DIR= '/ais/hal9000/datasets/reddit/stance_analysis/'
 
-
-
 ISAAC_SUBS = pd.read_csv('~/AutismHateSpeech/Data/reddit-master-metadata.tsv', delimiter="\t")['community'].tolist()
 ISAAC_SUBS = [sub.lower() for sub in ISAAC_SUBS]
 FIELDS_TO_KEEP = ['author', 'body', 'controversiality', 'created_utc', 'id', 'parent_id', 'score', 'subreddit', 'author_flair_text', 'author_flair_css_class']
-# quarter_to_data = {
-#     "first": ["01", "02", "03"],
-#     "second": ["04", "05", "06"],
-#     "third": ["07", "08", "09"],
-#     "fourth": ["10", "11", "12"],
-# }
 quarter_to_data = {
-    "first": ["02"],
-    "second": ["05"],
-    "third": ["08"],
-    "fourth": ["11"],
-    "f2": ["03"],
-    "f3": ["06"],
-    "f4": ["09"],
-    "f5":["12"]
+    "first": ["01", "02", "03"],
+    "second": ["04", "05", "06"],
+    "third": ["07", "08", "09"],
+    "fourth": ["10", "11", "12"],
 }
+
 # print(SUBS)
 
 
@@ -319,6 +308,8 @@ if __name__ == "__main__":
     parser.add_argument("year",
                         type=str)
     parser.add_argument("quarter",
+                        type=str)
+    parser.add_argument("output_dir",
                         type=str)
     args = parser.parse_args()
     print(args.year)

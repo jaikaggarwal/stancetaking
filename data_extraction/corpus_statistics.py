@@ -11,7 +11,7 @@ from nltk import sent_tokenize
 ROOT_DIR = "/ais/hal9000/datasets/reddit/stance_analysis/"
 files = sorted(list(os.walk(ROOT_DIR)))
 
-stance_groups = pd.read_json("../stancemarkers/stancemarkers.json").T
+stance_groups = pd.read_json("~/stancetaking/stancemarkers/stancemarkers.json").T
 sub_group = stance_groups[stance_groups['stance_group'].isin(["positive_affect_verbs", "positive_affect_adjective", "negative_affect_verbs", "negative_affect_adjective", "positive_affect_adverb", "negative_affect_adverb", "emphatic"])]
 rel_markers = set(sub_group.index)
 marker_to_group = sub_group['stance_group'].to_dict()
@@ -36,7 +36,7 @@ def filter_df(df):
 
 def extract_test_data(test_communities_file, data_dir, output_dir):
     print(data_dir)
-    rel_communities = pd.read_csv(test_communities_file, index_col=0).index.tolist()
+    rel_communities = pd.read_csv(test_communities_file, index_col=0).index.tolist()[:20]
     sub_files = os.listdir(data_dir)
     curr_total = []
     for sub_file in sub_files:
@@ -48,8 +48,8 @@ def extract_test_data(test_communities_file, data_dir, output_dir):
     agg = pd.concat(curr_total)
     agg = filter_df(agg)
     # Mask sentences
-    agg['body_mask'] = agg.apply(lambda x: re.sub(eval(x['rel_marker'])[0], "[MASK]", x['body'].lower()), axis=1)
-    agg.to_csv(ROOT_DIR + f"{output_dir}/{data_dir[idx + 1: ]}.csv")
+    agg['body_mask'] = agg.apply(lambda x: re.sub(x['rel_marker'][0], "[MASK]", x['body'].lower()), axis=1)
+    agg.to_csv(f"{output_dir}/{data_dir[idx + 1: ]}.csv")
 
 
 def mask_sentences():

@@ -12,11 +12,11 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from multiprocessing import Pool
 import os
-
+from itertools import product
 from utils import Serialization, pickle
 
 from sentence_transformers.SentenceTransformer import torch as pt
-pt.cuda.set_device(1)
+pt.cuda.set_device(0)
 print(pt.cuda.is_available())
 print(pt.__version__)
 model = SentenceTransformer('bert-large-nli-mean-tokens')
@@ -106,7 +106,7 @@ class LexicalAnalysis():
         return politeness_clf
 
     def init_formality():
-        model = pickle.load(open("../formality_model/models/formality_model.sav", "rb"))
+        model = pickle.load(open("/u/jai/stancetaking/formality_model/models/formality_model.sav", "rb"))
         return model
     
     def infer_formality(embeddings, formality_model):
@@ -168,32 +168,68 @@ class LexicalAnalysis():
 
         return valence_model, arousal_model, dominance_model
 
-def stance_feature_extraction(input_pair, input_dir, output_dir, v_model, a_model, d_model, p_model, f_model):
+def stance_feature_extraction(input_pair, input_dir, output_dir, valence_model, arousal_model, dominance_model, politeness_model, formality_model):
     e, m = input_pair
-    e_file = pd.read_csv(input_dir + e, index_col='id')
+    print("Loading data...")
+    dfs = []
+    for f in e:
+        e_file = pd.read_csv(input_dir + f, index_col='id')
+        dfs.append(e_file)
     m_file = pd.read_csv(input_dir + m, index_col='id')
+    e_file = pd.concat(dfs)
+    print(len(dfs))
+    print(e_file.shape)
+    print(m_file.shape)
+    print(all(e_file.index == m_file.index))
     embeddings = e_file.to_numpy()
+    print("VAD Inference")
     vad_vals = LexicalAnalysis.infer_emotion_value(embeddings, valence_model, arousal_model, dominance_model)
     vad_vals = pd.DataFrame(np.asarray(vad_vals).T, index=m_file.index, columns=['Valence', 'Arousal', 'Dominance'])
     m_file = pd.concat((m_file, vad_vals), axis=1)
+    print("Politeness Inference")
     m_file['Politeness'] = LexicalAnalysis.infer_politeness(embeddings, politeness_model)
+    print("Formality Inference")
     m_file['Formality'] = LexicalAnalysis.infer_formality(embeddings, formality_model)
     m_file.to_csv(output_dir + m[:-4] + "_full_features.csv")
 
 
+class PoolStanceWrapper(object):
+    def __init__(self, input_dir, output_dir, valence_model, arousal_model, dominance_model, politeness_model, formality_model):
+        self.input_dir = input_dir
+        self.output_dir = output_dir
+        self.valence_model = valence_model
+        self.arousal_model = arousal_model
+        self.dominance_model = dominance_model
+        self.politeness_model = politeness_model
+        self.formality_model = formality_model
+    
+    def __call__(self, em_pair):
+        print("Stance Extraction")
+        stance_feature_extraction(em_pair, self.input_dir, self.output_dir, self.valence_model, self.arousal_model, self.dominance_model, self.politeness_model, self.formality_model)
+
+
 def extraction_wrapper(input_dir, output_dir, num_cores):
     data = os.listdir(input_dir)
-    embedding_files = sorted([file for file in data if "embeddings.csv" in file])
-    metadata_files = sorted([file for file in data if "metadata.csv" in file])
+    months = [ "10", "11", "12"] #"01", "02", "03", "04", "05", "06", "07", "08", "09",
+    embedding_files = sorted([file for file in data if "embeddings_" in file])
+    metadata_files = sorted([file for file in data if "metadata" in file])[-3:]
+    print(metadata_files)
+
+    by_month = [sorted([file for file in embedding_files if f"2014_{m}" in file]) for m in months]
 
     valence_model, arousal_model, dominance_model = LexicalAnalysis.init_vad()
     politeness_model = LexicalAnalysis.init_politeness()
     formality_model = LexicalAnalysis.init_formality()
 
-    with Pool(num_cores) as p:
-        r = list(tqdm(p.imap(lambda x: stance_feature_extraction(x, input_dir, output_dir, valence_model, arousal_model, dominance_model, politeness_model, formality_model), 
-        zip(embedding_files, metadata_files)), 
-        total=len(embedding_files)))
+    for month, metadata in zip(by_month, metadata_files):
+        stance_feature_extraction((month, metadata), input_dir, output_dir, valence_model, arousal_model, dominance_model, politeness_model, formality_model)
+    # for month, metadata in zip(by_month, sorted(metadata_files)):
+    #     print(month)
+    #     print(metadata)
+    #     with Pool(num_cores) as p:
+    #         r = list(tqdm(p.imap(PoolStanceWrapper(input_dir, output_dir, valence_model, arousal_model, dominance_model, politeness_model, formality_model), 
+    #         product(month, [metadata])), 
+    #         total=len(month)))
 
 if __name__ == "__main__":
 
