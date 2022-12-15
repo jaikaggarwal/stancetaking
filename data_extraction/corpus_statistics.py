@@ -5,22 +5,32 @@ from multiprocessing import Pool
 import tqdm
 import re
 from nltk import sent_tokenize
+from sentence_transformers import SentenceTransformer
+from utils import Serialization
 
+model_name="bert-large-nli-mean-tokens"
+model = SentenceTransformer(model_name)
 
 
 ROOT_DIR = "/ais/hal9000/datasets/reddit/stance_analysis/"
 files = sorted(list(os.walk(ROOT_DIR)))
 
-stance_groups = pd.read_json("~/stancetaking/stancemarkers/stancemarkers.json").T
-sub_group = stance_groups[stance_groups['stance_group'].isin(["positive_affect_verbs", "positive_affect_adjective", "negative_affect_verbs", "negative_affect_adjective", "positive_affect_adverb", "negative_affect_adverb", "emphatic"])]
-rel_markers = set(sub_group.index)
-marker_to_group = sub_group['stance_group'].to_dict()
+# stance_groups = pd.read_json("~/stancetaking/stancemarkers/stancemarkers.json").T
+# sub_group = FIX#stance_groups[stance_groups['stance_group'].isin(["positive_affect_verbs", "positive_affect_adjective", "negative_affect_verbs", "negative_affect_adjective", "positive_affect_adverb", "negative_affect_adverb", "emphatic"])]
+rel_markers = Serialization.load_obj("expanded_stancemarkers_0.85_threshold")
+rel_markers.remove("is")
+print(f"Number of markers: {len(rel_markers)}")
+# marker_to_group = sub_group['stance_group'].to_dict()
 
 def extract_relevant_markers(new_line, terms):
     curr_body = set(new_line.lower().split(" "))
     present_markers = [val for val in terms if val in curr_body]
     return present_markers
 
+def get_sbert_length(sens):
+    tokens = model.tokenize(sens)
+    lens = [len(token_set) for token_set in tokens]
+    return lens
 
 def filter_df(df):
     df['sens'] = df['body'].apply(lambda x: sent_tokenize(x))
@@ -29,24 +39,25 @@ def filter_df(df):
     tmp['rel_marker'] = tmp['sens'].apply(lambda x: extract_relevant_markers(x, rel_markers))
     tmp['one_marker'] = tmp['rel_marker'].apply(lambda x: len(x) == 1)
     tmp = tmp[tmp['one_marker']]
-    tmp['marker_category'] = tmp['rel_marker'].apply(lambda x: marker_to_group[x[0]])
-    tmp['len'] = tmp['sens'].apply(lambda x: len(x.split(" ")))
+    # tmp['marker_category'] = tmp['rel_marker'].apply(lambda x: marker_to_group[x[0]])
+    tmp['len'] = get_sbert_length(tmp['sens'].tolist())
     tmp = tmp.rename(columns={"sens": "body"})
-    return tmp[tmp['len'] >= 6]
+    return tmp[tmp['len'] >= 6] # TODO
 
 def extract_test_data(test_communities_file, data_dir, output_dir):
     print(data_dir)
-    rel_communities = pd.read_csv(test_communities_file, index_col=0).index.tolist()[:20]
+    rel_communities = pd.read_csv(test_communities_file, index_col=0).index.tolist()
+    print(f"Number of relevant communities: {len(rel_communities)}")
     sub_files = os.listdir(data_dir)
     curr_total = []
     for sub_file in sub_files:
         df = pd.read_json(data_dir + "/" + sub_file, lines=True)
         tmp = df[df['BF'] == 1][['author', 'body', 'subreddit', 'id', "created_utc", "BF_markers"]]
         tmp['subreddit'] = tmp['subreddit'].str.lower()
-        curr_total.append(tmp[tmp['subreddit'].isin(rel_communities)])
+        tmp = tmp[tmp['subreddit'].isin(rel_communities)]
+        curr_total.append(filter_df(tmp))
     idx = data_dir.rfind("/")
     agg = pd.concat(curr_total)
-    agg = filter_df(agg)
     # Mask sentences
     agg['body_mask'] = agg.apply(lambda x: re.sub(x['rel_marker'][0], "[MASK]", x['body'].lower()), axis=1)
     agg.to_csv(f"{output_dir}/{data_dir[idx + 1: ]}.csv")

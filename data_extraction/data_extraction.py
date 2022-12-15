@@ -11,6 +11,7 @@ import pandas as pd
 import re
 from collections import defaultdict
 from nltk import word_tokenize
+from multiprocessing import Pool
 
 tqdm.pandas()
 
@@ -76,7 +77,8 @@ def apply_filters(new_line):
     # Now we can check to see if the body is long enough
     if to_keep:
         new_body = preprocess(new_line['body'])
-        if len(word_tokenize(new_body)) < 5:
+        # FIX THIS
+        if len(word_tokenize(new_body)) < 2:
             return False, new_line
         new_line['body'] = new_body
         return True, new_line
@@ -105,8 +107,10 @@ def apply_filters_with_term(new_line, terms):
         return False, new_line
 
 def group_to_terms():
-    biber_df = pd.read_csv("biber_stance_markers.txt", header=None)
-    biber_markers = set(biber_df[0])
+    # biber_df = pd.read_csv("biber_stance_markers.txt", header=None)
+    # biber_markers = set(biber_df[0])
+    biber_markers = set(Serialization.load_obj("expanded_stancemarkers_0.85_threshold"))
+    print(len(biber_markers))
 
     biber_ex_df = pd.read_csv("biber_expanded_stance_markers.txt", header=None)
     biber_ex_markers = set(biber_ex_df[0])
@@ -118,18 +122,17 @@ def group_to_terms():
     dialog_ex_markers = set(dialog_ex_df[0])
 
     return {
-        "BF": biber_markers,
-        "BF_EX": biber_ex_markers,
-        "DA": dialog_markers,
-        "DA_EX": dialog_ex_markers
+        "BF": biber_markers#,
+        # "BF_EX": biber_ex_markers,
+        # "DA": dialog_markers,
+        # "DA_EX": dialog_ex_markers
     }
 
-def extract_data_with_term(year, quarter):
+def extract_data_with_term(zst_file): #year, quarter
     group_to_term = group_to_terms()
-    zst_files = [f'RC_{year}-{num}.zst' for num in quarter_to_data[quarter]]
+    zst_files = [zst_file] #for num in quarter_to_data[quarter]
     print("Number of files...", len(zst_files))
     for filename in zst_files:
-
         # Trackers
         print(filename) # Which files
         counter = 0 # How many bytes we've seen
@@ -302,16 +305,62 @@ def extract_data_per_author(year, quarter, author_set_name_1, author_set_name_2)
                                 # do something with the object here
                             previous_line = lines[-1]
 
+def extract_cooc_counts(filename):
+    rel_communities = set(pd.read_csv("test_communities.csv", index_col=0).index.tolist())
+    print(len(rel_communities))
+    # zst_files = [f'RC_2014-{num}.zst' for num in ]
+    # print("Number of files...", len(zst_files))
+    # Trackers
+    print(filename) # Which files
+    counter = 0 # How many bytes we've seen
+    loops = 0 # How many windows we've decompressed
+    a = time.time() # Overall time
+    with open(f"/ais/hal9000/datasets/reddit/stance_pipeline/nov_27_test_run/crossposting/{filename[:-4]}_counts_posting_history.json", "w") as f_out:
+        with open(DIR + filename, 'rb') as fh:
+            dctx = zstd.ZstdDecompressor(max_window_size=2147483648)
+            with dctx.stream_reader(fh) as reader:
+                previous_line = ""
+                while True:
+                    chunk = reader.read(2**24)  # 16mb chunks
+                    counter += 2**24
+                    loops += 1
+                    if loops % 2000 == 0:
+                        print(f"{counter/10**9:.2f} GB")
+                        print(f"{(time.time()-a)/60:.2f} minutes passed")
+                    if not chunk:
+                        break
+
+                    string_data = chunk.decode('utf-8')
+                    lines = string_data.split("\n")
+                    for i, line in enumerate(lines[:-1]):
+                        if i == 0:
+                            line = previous_line + line
+                        line = json.loads(line)
+                        if line['subreddit'].lower() not in rel_communities:
+                            continue
+                        
+                        new_line = {field: line.get(field, np.nan) for field in ["subreddit", "author"]}
+                        
+                        f_out.write(json.dumps(new_line))
+                        f_out.write("\n")
+                        # do something with the object here
+                    previous_line = lines[-1]
+
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("year",
-                        type=str)
-    parser.add_argument("quarter",
-                        type=str)
-    parser.add_argument("output_dir",
-                        type=str)
-    args = parser.parse_args()
-    print(args.year)
-    print(quarter_to_data[args.quarter])
-    extract_data_with_term(args.year, args.quarter)
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument("year",
+    #                     type=str)
+    # parser.add_argument("quarter",
+    #                     type=str)
+    # parser.add_argument("output_dir",
+    #                     type=str)
+    # args = parser.parse_args()
+    # print(args.year)
+    # print(quarter_to_data[args.quarter])
+    # extract_data_with_term(args.year, args.quarter)
+    zst_files = [f'RC_2014-{num}.zst' for num in ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]]
+    with Pool(12) as p:
+        # r = list(tqdm(p.imap(extract_cooc_counts, zst_files), total=12))
+        r = list(tqdm(p.imap(extract_data_with_term, zst_files), total=12))
+
