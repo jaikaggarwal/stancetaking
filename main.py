@@ -10,13 +10,13 @@ from multiprocessing import Pool
 from itertools import product
 
 from sentence_transformers.SentenceTransformer import torch as pt
-pt.cuda.set_device(0)
+pt.cuda.set_device(1)
 
-def main(dir_name, num_cores):
+def main(dir_name, num_cores, range_start=0, range_finish=12):
     # Step 0: Load files and prepare directories
     #TODO: Use exisiting pipeline data_dir to avoid repetition of this part of the pipeline
     ROOT_DIR = f"/ais/hal9000/datasets/reddit/stance_pipeline/{dir_name}/"
-    RAW_DATA_DIR = "/ais/hal9000/datasets/reddit/stance_analysis/"
+    RAW_DATA_DIR = "/ais/hal9000/datasets/reddit/stance_analysis/full_data/"
     TEST_COMMUNITIES_FILE = "data_extraction/test_communities.csv"
     PIPELINE_DATA_DIR = ROOT_DIR + "current_data/"
     EMBEDDINGS_DIR = ROOT_DIR + "embeddings/"
@@ -32,8 +32,8 @@ def main(dir_name, num_cores):
         else:
             print(f"Using existing directory: {dir_str}")
     
-    # # Step 1: Gather all data from test communities #TODO: Write as wrapper
-    # print("Extracting community data...")
+    # # # Step 1: Gather all data from test communities #TODO: Write as wrapper
+    # # print("Extracting community data...")
     # with Pool(num_cores) as p:
     #     r = list(tqdm(p.starmap(cs.extract_test_data, [(TEST_COMMUNITIES_FILE, data_dir, PIPELINE_DATA_DIR) for data_dir in data_dirs]), total=len(data_dirs)))
     
@@ -43,11 +43,11 @@ def main(dir_name, num_cores):
     
     # # Step 3: Create embeddings and metadata file (cannot parallelize, based on GPUs)
     # print("Create embeddings...")
-    # eeu.embeddings_wrapper(PIPELINE_DATA_DIR, EMBEDDINGS_DIR, sbert_model)
+    # eeu.embeddings_wrapper(PIPELINE_DATA_DIR, EMBEDDINGS_DIR, sbert_model, range_start, range_finish)
     
     # Step 4: Infer emotional values to create semantic situations
     print("Extracting features...")
-    fe.extraction_wrapper(EMBEDDINGS_DIR, SITUATIONS_DIR, num_cores)
+    fe.extraction_wrapper(EMBEDDINGS_DIR, SITUATIONS_DIR, num_cores, range_start, range_finish)
 
     #TODO:
     # Step 5: Bin/cluster semantic situations
@@ -58,6 +58,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run stancetaking pipeline")
     parser.add_argument("output_dir", type=str, help="Where to store data")
     parser.add_argument("--num_cores", type=int, help="Number of cores to use.", default=6)
+    parser.add_argument("--range_start", type=int, help="First file to use", default=6)
+    parser.add_argument("--range_finish", type=int, help="Last in series of files to use", default=6)
     
     args = parser.parse_args()
-    main(args.output_dir, args.num_cores)
+    main(args.output_dir, args.num_cores, args.range_start, args.range_finish)
